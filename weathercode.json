@@ -1,0 +1,282 @@
+{
+	"0":{
+		"day":{
+			"description":"Clear Sky",
+			"image":"https://cdn.weatherbit.io/static/img/icons/c01d.png"
+		},
+		"night":{
+			"description":"Clear Sky",
+			"image": "https://cdn.weatherbit.io/static/img/icons/c01n.png"
+		}
+	},
+	"1":{
+		"day":{
+			"description":"Mainly Clear",
+			"image":"https://cdn.weatherbit.io/static/img/icons/c02d.png"
+		},
+		"night":{
+			"description":"Mainly Clear",
+			"image": "https://cdn.weatherbit.io/static/img/icons/c02n.png"
+		}
+	},
+	"2":{
+		"day":{
+			"description":"Partly Cloudy",
+			"image":"https://cdn.weatherbit.io/static/img/icons/c02d.png"
+		},
+		"night":{
+			"description":"Partly Cloudy",
+			"image": "https://cdn.weatherbit.io/static/img/icons/c02n.png"
+		}
+	},
+	"3":{
+		"day":{
+			"description":"Overcast",
+			"image":"https://cdn.weatherbit.io/static/img/icons/c04d.png"
+		},
+		"night":{
+			"description":"Overcast",
+			"image": "https://cdn.weatherbit.io/static/img/icons/c04n.png"
+		}
+	},
+	"45":{
+		"day":{
+			"description":"Fog",
+			"image":"https://cdn.weatherbit.io/static/img/icons/a05d.png"
+		},
+		"night":{
+			"description":"Fog",
+			"image": "https://cdn.weatherbit.io/static/img/icons/a05n.png"
+		}
+	},
+	"48":{
+		"day":{
+			"description":"Depositing Rime Fog",
+			"image":"https://cdn.weatherbit.io/static/img/icons/a05d.png"
+		},
+		"night":{
+			"description":"Depositing Rime Fog",
+			"image": "https://cdn.weatherbit.io/static/img/icons/a05n.png"
+		}
+	},
+	"51":{
+		"day":{
+			"description":"Light Drizzle",
+			"image":"https://cdn.weatherbit.io/static/img/icons/d02d.png"
+		},
+		"night":{
+			"description":"Light Drizzle",
+			"image": "https://cdn.weatherbit.io/static/img/icons/d02n.png"
+		}
+	},
+	"53":{
+		"day":{
+			"description":"Moderate Drizzle",
+			"image":"https://cdn.weatherbit.io/static/img/icons/d02d.png"
+		},
+		"night":{
+			"description":"Moderate Drizzle",
+			"image": "https://cdn.weatherbit.io/static/img/icons/d02n.png"
+		}
+	},
+	"55":{
+		"day":{
+			"description":"Dense Drizzle",
+			"image":"https://cdn.weatherbit.io/static/img/icons/d02d.png"
+		},
+		"night":{
+			"description":"Dense Drizzle",
+			"image": "https://cdn.weatherbit.io/static/img/icons/d02n.png"
+		}
+	},
+	"56":{
+		"day":{
+			"description":"Light Freezing Drizzle",
+			"image":"https://cdn.weatherbit.io/static/img/icons/d02d.png"
+		},
+		"night":{
+			"description":"Light Freezing Drizzle",
+			"image": "https://cdn.weatherbit.io/static/img/icons/d02n.png"
+		}
+	},
+	"57":{
+		"day":{
+			"description":"Dense Freezing Drizzle",
+			"image":"https://cdn.weatherbit.io/static/img/icons/d02d.png"
+		},
+		"night":{
+			"description":"Dense Freezing Drizzle",
+			"image": "https://cdn.weatherbit.io/static/img/icons/d02n.png"
+		}
+	},
+	"61":{
+		"day":{
+			"description":"Light Rain",
+			"image":"https://cdn.weatherbit.io/static/img/icons/r01d.png"
+		},
+		"night":{
+			"description":"Light Rain",
+			"image": "https://cdn.weatherbit.io/static/img/icons/r01n.png"
+		}
+	},
+	"63":{
+		"day":{
+			"description":"Moderate Rain",
+			"image":"https://cdn.weatherbit.io/static/img/icons/r02d.png"
+		},
+		"night":{
+			"description":"Moderate Rain",
+			"image": "https://cdn.weatherbit.io/static/img/icons/r02n.png"
+		}
+	},
+	"65":{
+		"day":{
+			"description":"Heavy Rain",
+			"image":"https://cdn.weatherbit.io/static/img/icons/r03d.png"
+		},
+		"night":{
+			"description":"Heavy Rain",
+			"image": "https://cdn.weatherbit.io/static/img/icons/r03n.png"
+		}
+	},
+	"66":{
+		"day":{
+			"description":"Light Freezing Rain",
+			"image":"https://cdn.weatherbit.io/static/img/icons/f01d.png"
+		},
+		"night":{
+			"description":"Light Freezing Rain",
+			"image": "https://cdn.weatherbit.io/static/img/icons/f01n.png"
+		}
+	},
+	"67":{
+		"day":{
+			"description":"Heavy Freezing Rain",
+			"image":"https://cdn.weatherbit.io/static/img/icons/f01d.png"
+		},
+		"night":{
+			"description":"Heavy Freezing Rain",
+			"image": "https://cdn.weatherbit.io/static/img/icons/f01n.png"
+		}
+	},
+	"71":{
+		"day":{
+			"description":"Light Snow Fall",
+			"image":"https://cdn.weatherbit.io/static/img/icons/s01d.png"
+		},
+		"night":{
+			"description":"Light Snow Fall",
+			"image": "https://cdn.weatherbit.io/static/img/icons/s01n.png"
+		}
+	},
+	"73":{
+		"day":{
+			"description":"Moderate Snow Fall",
+			"image":"https://cdn.weatherbit.io/static/img/icons/s02d.png"
+		},
+		"night":{
+			"description":"Moderate Snow Fall",
+			"image": "https://cdn.weatherbit.io/static/img/icons/s02n.png"
+		}
+	},
+	"75":{
+		"day":{
+			"description":"Heavy Snow Fall",
+			"image":"https://cdn.weatherbit.io/static/img/icons/s03d.png"
+		},
+		"night":{
+			"description":"Heavy Snow Fall",
+			"image": "https://cdn.weatherbit.io/static/img/icons/s03n.png"
+		}
+	},
+	"77":{
+		"day":{
+			"description":"Snow Grains",
+			"image":"https://cdn.weatherbit.io/static/img/icons/s03d.png"
+		},
+		"night":{
+			"description":"Snow Grains",
+			"image": "https://cdn.weatherbit.io/static/img/icons/s03n.png"
+		}
+	},
+	"80":{
+		"day":{
+			"description":"Light Rain Showers",
+			"image":"https://cdn.weatherbit.io/static/img/icons/r04d.png"
+		},
+		"night":{
+			"description":"Light Rain Showers",
+			"image": "https://cdn.weatherbit.io/static/img/icons/r04n.png"
+		}
+	},
+	"81":{
+		"day":{
+			"description": "Moderate Rain Showers",
+			"image":"https://cdn.weatherbit.io/static/img/icons/r05d.png"
+		},
+		"night":{
+			"description":"Moderate Rain Showers",
+			"image": "https://cdn.weatherbit.io/static/img/icons/r05n.png"
+		}
+	},
+	"82":{
+		"day":{
+			"description":"Heavy Rain Showers",
+			"image":"https://cdn.weatherbit.io/static/img/icons/r06d.png"
+		},
+		"night":{
+			"description":"Heavy Rain Showers",
+			"image": "https://cdn.weatherbit.io/static/img/icons/r06n.png"
+		}
+	},
+	"85":{
+		"day":{
+			"description":"Light Snow Showers",
+			"image":"https://cdn.weatherbit.io/static/img/icons/s01d.png"
+		},
+		"night":{
+			"description":"Light Snow Showers",
+			"image": "https://cdn.weatherbit.io/static/img/icons/s01n.png"
+		}
+	},
+	"86":{
+		"day":{
+			"description":"Heavy Snow Showers",
+			"image":"https://cdn.weatherbit.io/static/img/icons/s03d.png"
+		},
+		"night":{
+			"description":"Heavy Snow Showers",
+			"image": "https://cdn.weatherbit.io/static/img/icons/s03n.png"
+		}
+	},
+	"95":{
+		"day":{
+			"description":"Thunderstorm",
+			"image":"https://cdn.weatherbit.io/static/img/icons/t01d.png"
+		},
+		"night":{
+			"description":"Thunderstorm",
+			"image": "https://cdn.weatherbit.io/static/img/icons/t01n.png"
+		}
+	},
+	"96":{
+		"day":{
+			"description":"Thunderstorm with Light Hail",
+			"image":"https://cdn.weatherbit.io/static/img/icons/t01d.png"
+		},
+		"night":{
+			"description":"Thunderstorm with Light Hail",
+			"image": "https://cdn.weatherbit.io/static/img/icons/t01n.png"
+		}
+	},
+	"99":{
+		"day":{
+			"description":"Thunderstorm with Heavy Hail",
+			"image":"https://cdn.weatherbit.io/static/img/icons/t05d.png"
+		},
+		"night":{
+			"description":"Thunderstorm with Heavy Hail",
+			"image": "https://cdn.weatherbit.io/static/img/icons/t05n.png"
+		}
+	}
+}

@@ -3,7 +3,7 @@ const axios = require('axios');
 const dotenv = require('dotenv');
 const asyncHandler = require('express-async-handler');
 const { OAuth2Client } = require('google-auth-library');
-
+const descriptionObject = require('./weathercode.json');
 // Create and configure the app
 const app = express();
 
@@ -11,125 +11,81 @@ const app = express();
 app.set("trust proxy", true);
 
 count = 0
-// Initial route for the add-on
-// app.post('/', asyncHandler(async (req, res) => {
-//     const event = req.body;
-//     const hourlyWeather = await hourlyWeatherAPI();
-//     console.log("Hello");
-//     hourOne = hourlyWeather.list[0].main.temp
-//     condOne = hourlyWeather.list[0].weather[0].description
-//     const card = {
-//         sections: [{
-//             "header": "Weekly Weather",
-//             "widgets": [
-//                 {
-//                 "decoratedText": {
-//                     "topLabel": "Day 1",
-//                     "text": "WDay 1",
-//                     "startIcon": {
-//                     "altText": "test",
-//                     "imageType": "CIRCLE",
-//                     "iconUrl": "https://koolinus.files.wordpress.com/2019/03/avataaars-e28093-koolinus-1-12mar2019.png"
-//                     },
-//                     "bottomLabel": ""
-//                     }
-//                 },
-//                 {
-//                     "decoratedText": {
-//                         "topLabel": "Day 2",
-//                         "text": "Weather Day 2",
-//                         "startIcon": {
-//                         "altText": "test",
-//                         "imageType": "CIRCLE",
-//                         "iconUrl": "https://koolinus.files.wordpress.com/2019/03/avataaars-e28093-koolinus-1-12mar2019.png"
-//                         },
-//                         "bottomLabel": ""
-//                         }
-//                 }
-//             ],
-//             "collapsible": true
-//         },
-//         {
-//             "header": "Hourly Weather",
-//             "widgets": [
-//                 {
-//                 "decoratedText": {
-//                     "topLabel": "Hour 1",
-//                     "text": "Weather Hour 1",
-//                     "startIcon": {
-//                     "altText": "test",
-//                     "imageType": "CIRCLE",
-//                     "iconUrl": "https://koolinus.files.wordpress.com/2019/03/avataaars-e28093-koolinus-1-12mar2019.png"
-//                     },
-//                     "bottomLabel": ""
-//                 }
-//                 }
-//             ],
-//             "collapsible": true
-//         },
-//         {
-//             "header": "Test Ouput",
-//             "widgets": [
-//                 {
-//                     textParagraph: {
-//                         text: `Weather: ${hourOne} and ${condOne}`
-//                     }
-//                 },
-//             ],
-//             "collapsible": true
-//         },
-    
-//     ]
-//     };
-//       const renderAction = {
-//                  action: {
-//                      navigations: [{
-//                          pushCard: card
-//                      }]
-//                  }
-//              };
-//     res.json(renderAction);
-// }));
 app.get('/', asyncHandler(async (req, res) => {
     const hourlyWeather = await hourlyWeatherAPI();
+    const dailyWeather = await dailyWeatherAPI();
+    console.log(dailyWeather);
     const weatherList = buildHourlyWeather(hourlyWeather);
-    console.log(weatherList)
     res.send(`New Test`);
   }));
 
-async function hourlyWeatherAPI() {
+  async function hourlyWeatherAPI() {
     try {
-        const lat = 43.46;
-        const lon = -80.52;
-        const apiUrl = `https://api.open-meteo.com/v1/gem?latitude=43.4831&longitude=-80.5339&hourly=temperature_2m,weathercode&timezone=America%2FNew_York&forecast_days=1`;
+        const apiUrl = 'https://api.open-meteo.com/v1/gem?latitude=43.4831&longitude=-80.5339&hourly=temperature_2m,weathercode,is_day&timezone=America%2FNew_York&past_days=1&forecast_days=2'
         const response = await axios.get(apiUrl);
         return response.data;
     } catch (error) {
-        console.log(error);
       throw new Error('An error occurred while calling the API.');
     }
   }
+  async function dailyWeatherAPI() {
+    try {
+        const apiUrl = 'https://api.open-meteo.com/v1/forecast?latitude=43.4831&longitude=-80.5339&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=America%2FNew_York'
+        const response = await axios.get(apiUrl);
+        return response.data;
+    } catch (error) {
+      throw new Error('An error occurred while calling the API.');
+    }
+}
 
   function buildHourlyWeather(hourlyWeather){
     const myTimes = hourlyWeather.hourly.time;
     const myTemps = hourlyWeather.hourly.temperature_2m;
     const myCode = hourlyWeather.hourly.weathercode;
+    const myDay = hourlyWeather.hourly.is_day;
     const myLength = myTimes.length;
     const weatherList = {
         header: 'Weekly Weather',
         widgets: [],
         collapsible: true
     };
+    
+    const now = new Date();
+    now.setMinutes(0); // Reset minutes to 0 to round to the nearest hour
+    now.setSeconds(0); // Reset seconds to 0
+    now.setMilliseconds(0); // Reset milliseconds to 0
+    const otherTimestamp = now.toISOString().slice(0, 16);
+    now.setHours(now.getHours() - 6)
+    const currentTimestamp = now.toISOString().slice(0, 16);
+    
+
+
+    const currentIndex = myTimes.indexOf(currentTimestamp)
+    // console.log("current index:", currentIndex)
+    // console.log("Future Timestamp", myTimes[currentIndex + 12])
+    // console.log("Timestamps: " + myTimes[0])
+
     for (let i = 0; i < myLength; i++) {
+        const currentTimeAMPM = new Date(myTimes[i]).toLocaleString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true });
+        const weatherData = descriptionObject[myCode[i]]
+        let myImage = "";
+        let myDescript = "";
+        if(myDay[i]){
+            myImage = weatherData['day'].image;
+            myDescript = weatherData['day'].description;
+        } else{
+            myImage = weatherData['night'].image;
+            myDescript = weatherData['night'].description;
+        }
         weatherList.widgets.push(
             {
                 "decoratedText": {
-                    "topLabel": `${myTimes[i]}`,
-                    "text": `${myTemps[i]} C - ${myCode[i]}`,
+                    "topLabel": `${currentTimeAMPM}`,
+                    "text": `${myTemps[i]} C - ${myDescript}`,
                     "startIcon": {
                     "altText": "test",
                     "imageType": "CIRCLE",
-                    "iconUrl": "https://koolinus.files.wordpress.com/2019/03/avataaars-e28093-koolinus-1-12mar2019.png"
+                    "iconUrl": `${myImage}`
                     },
                     "bottomLabel": ""
                     }
@@ -137,7 +93,7 @@ async function hourlyWeatherAPI() {
         )
     }
     return weatherList;
-} 
+}
 // Start the server
 const port = process.env.PORT || 8080;
 app.listen(port, () => {
