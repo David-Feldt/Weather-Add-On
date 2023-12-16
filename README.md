@@ -10,6 +10,7 @@ Use the following to create the front end
 https://gw-card-builder.web.app/
 
 Below is what the side bar looks like
+
 ![alt text](https://github.com/David-Feldt/WeatherAddOn/blob/main/weather.png)
 
 ## Todo
