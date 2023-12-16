@@ -16,6 +16,7 @@ app.get('/', asyncHandler(async (req, res) => {
     const dailyWeather = await dailyWeatherAPI();
     console.log(dailyWeather);
     const weatherList = buildHourlyWeather(hourlyWeather);
+    
     res.send(`New Test`);
   }));
 
