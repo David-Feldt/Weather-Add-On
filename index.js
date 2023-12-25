@@ -1,6 +1,6 @@
 const express = require('express');
 const axios = require('axios');
-const dotenv = require('dotenv');
+require('dotenv').config();
 const asyncHandler = require('express-async-handler');
 const { OAuth2Client } = require('google-auth-library');
 const descriptionObject = require('./weathercode.json');
@@ -12,26 +12,38 @@ app.set("trust proxy", true);
 
 count = 0
 app.get('/', asyncHandler(async (req, res) => {
-    const hourlyWeather = await hourlyWeatherAPI();
-    const dailyWeather = await dailyWeatherAPI();
-    console.log(dailyWeather);
+    const coordinates = await getCoordinates();
+    const hourlyWeather = await hourlyWeatherAPI(coordinates.location.lat, coordinates.location.lng);
+    const dailyWeather = await dailyWeatherAPI(coordinates.location.lat, coordinates.location.lng);
+    console.log(hourlyWeather);
     const weatherList = buildHourlyWeather(hourlyWeather);
     
     res.send(`New Test`);
   }));
 
-  async function hourlyWeatherAPI() {
+async function getCoordinates() {
     try {
-        const apiUrl = 'https://api.open-meteo.com/v1/gem?latitude=43.4831&longitude=-80.5339&hourly=temperature_2m,weathercode,is_day&timezone=America%2FNew_York&past_days=1&forecast_days=2'
+        const apiUrl = `https://www.googleapis.com/geolocation/v1/geolocate?key=${process.env.YOUR_API_KEY}`
+        const response = await axios.post(apiUrl);
+        return response.data;
+    } catch (error) {
+      console.log(error)
+      throw new Error('An error occurred while calling the API.');
+    }
+}
+
+  async function hourlyWeatherAPI(lat, lng) {
+    try {
+        const apiUrl = `https://api.open-meteo.com/v1/gem?latitude=${lat}&longitude=${lng}&hourly=temperature_2m,weathercode,is_day&timezone=America%2FNew_York&past_days=1&forecast_days=2`
         const response = await axios.get(apiUrl);
         return response.data;
     } catch (error) {
       throw new Error('An error occurred while calling the API.');
     }
   }
-  async function dailyWeatherAPI() {
+  async function dailyWeatherAPI(lat, lng) {
     try {
-        const apiUrl = 'https://api.open-meteo.com/v1/forecast?latitude=43.4831&longitude=-80.5339&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=America%2FNew_York'
+        const apiUrl = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lng}&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=America%2FNew_York`
         const response = await axios.get(apiUrl);
         return response.data;
     } catch (error) {
